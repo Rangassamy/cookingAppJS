@@ -136,14 +136,14 @@ textarea {
   margin-bottom: 20px;
 }
 
-#recipes-render {
+#recipesRender {
   overflow-y: auto;
   width: 90%;
   margin: 0 auto;
   height: 300px;
 }
 
-#recipes-render li {
+#recipesRender li {
   border: 1px solid black;
   display: flex;
   justify-content: space-around;
@@ -151,7 +151,7 @@ textarea {
   margin-bottom: 10px;
   height: 40px;
 }
-#recipes-render::-webkit-scrollbar {
+#recipesRender::-webkit-scrollbar {
   width: 0px; /* Masquer la barre de défilement pour les navigateurs Webkit */
   background: transparent; /* Masquer le fond */
 }
