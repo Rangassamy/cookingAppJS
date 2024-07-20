@@ -1,0 +1,157 @@
+@import url("https://fonts.googleapis.com/css2?family=Jolly+Lodger&display=swap");
+
+* {
+  padding: 0;
+  margin: 0;
+  box-sizing: border-box;
+  font-family: "Jolly Lodger";
+}
+input,
+textarea {
+  border: 1px solid black;
+}
+label {
+  text-align: center;
+  font-size: 2rem;
+}
+li {
+  list-style: none;
+}
+body {
+  background: #d6d6d6;
+  width: 100%;
+  height: 100vh;
+  padding: 30px 55px;
+  display: grid;
+  grid-template-columns: 45% 45%;
+  justify-content: space-between;
+}
+
+h1 {
+  background: #0d9363;
+  font-size: 6rem;
+  color: #ebff03;
+  padding: 20px;
+  width: 600px;
+  letter-spacing: 2px;
+  border-radius: 35px;
+  border: 1px solid black;
+  font-weight: 200;
+  height: 160px;
+  align-items: center;
+  display: flex;
+  justify-content: center;
+  margin-bottom: 60px;
+}
+.left-part-first-container {
+  display: grid;
+  grid-template-columns: 55% 35%;
+  justify-content: space-between;
+  margin-bottom: 60px;
+}
+
+.left,
+.right {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+}
+.left-part-first-container input {
+  font-size: 1.5rem;
+  height: 40px;
+  padding: 10px;
+}
+.left-part-second-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+textarea {
+  padding: 10px;
+  font-size: 1.5rem;
+  resize: none;
+  height: 250px;
+  width: 100%;
+  margin-bottom: 60px;
+}
+
+.left-part-third-container {
+  display: flex;
+  align-items: end;
+}
+.left-part-third-container label {
+  margin-right: 30px;
+}
+
+.left-part-third-container button {
+  background: transparent;
+  border: none;
+  font-size: 2rem;
+  cursor: pointer;
+}
+
+.right-part-app {
+  display: grid;
+  grid-template-rows: 40% 55%;
+}
+.right-part-first-container h3 {
+  text-align: center;
+  font-size: 2rem;
+  font-weight: 200;
+  margin-bottom: 20px;
+}
+.right-part-first-container ul {
+  width: 100%;
+  height: 80%;
+  display: flex;
+  flex-wrap: wrap;
+}
+
+.right-part-first-container li {
+  height: 20%;
+  width: 33%;
+}
+
+.right-part-first-container input {
+  font-size: 1.2rem;
+  padding: 10px;
+  height: 90%;
+  width: 90%;
+}
+
+.recipes-container {
+  border: 1px solid black;
+  border-radius: 30px;
+  display: flex;
+  flex-direction: column;
+}
+
+#searchBar {
+  width: 80%;
+  margin: 20px auto;
+  height: 40px;
+  border-radius: 40px;
+  padding: 20px;
+  font-size: 1.5rem;
+  margin-bottom: 20px;
+}
+
+#recipes-render {
+  overflow-y: auto;
+  width: 90%;
+  margin: 0 auto;
+  height: 300px;
+}
+
+#recipes-render li {
+  border: 1px solid black;
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  margin-bottom: 10px;
+  height: 40px;
+}
+#recipes-render::-webkit-scrollbar {
+  width: 0px; /* Masquer la barre de défilement pour les navigateurs Webkit */
+  background: transparent; /* Masquer le fond */
+}

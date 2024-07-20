@@ -1,0 +1,13 @@
+Gestionnaire de Recettes de Cuisine
+Fonctionnalités principales :
+Ajouter des recettes avec des ingrédients, des étapes et des informations de préparation.
+Afficher une liste de recettes.
+Rechercher des recettes par nom ou par ingrédient.
+Mettre à jour ou supprimer des recettes.
+Marquer des recettes comme favorites.
+
+//---------------------------------------
+// Ce dont j'aurais besoin 
+//--------------------------------
+
+creer une fonction constructeur qui fera un tableau avec un parti pour le nom, pur les ingrédients, pour les étapes à suivre dans la recette
