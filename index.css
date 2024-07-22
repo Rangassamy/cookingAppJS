@@ -155,3 +155,19 @@ textarea {
   width: 0px; /* Masquer la barre de défilement pour les navigateurs Webkit */
   background: transparent; /* Masquer le fond */
 }
+
+.ingredients-container,
+.instructions-container {
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+  width: 500px;
+  height: 300px;
+  background-color: #b0b0b0;
+  display: flex;
+  padding: 50px;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+}

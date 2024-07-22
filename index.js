@@ -4,9 +4,9 @@ const recipeInstrusctions = document.getElementById("recipeInstructions");
 const ingredients = document.querySelectorAll(".ingredients");
 const submitButton = document.getElementById("recipeSubmit");
 const recipesContainer = document.getElementById("recipesRender");
-const recipe = document.querySelectorAll(".recipe");
-let recipesArray;
+let recipesArray = [];
 
+// Classe pour représenter une recette
 class Recipe {
   constructor(name, categorie, instructions, ingredients) {
     this.name = name;
@@ -16,9 +16,9 @@ class Recipe {
   }
 }
 
+// Ajouter une recette et mettre à jour le localStorage
 submitButton.addEventListener("click", () => {
   let ingredientsArray = [];
-
   ingredients.forEach((ingredient) => {
     if (ingredient.value !== "") {
       ingredientsArray.push(ingredient.value);
@@ -32,23 +32,10 @@ submitButton.addEventListener("click", () => {
     ingredientsArray
   );
 
-  // Récupérer les recettes existantes dans le local storage
   let recipes = JSON.parse(localStorage.getItem("recipes")) || [];
-
-  // Ajouter la nouvelle recette
   recipes.push(recipe);
-
-  // Mettre à jour le local storage
   localStorage.setItem("recipes", JSON.stringify(recipes));
-
-  recipesContainer.innerHTML += ` 
-    <li class="recipe"">
-     <h2>${recipe.name}</h2>
-     <h3>${recipe.categorie}</h3>
-     <button class="ingredientsBtn">Ingredients</button>
-     <button class="instructionsBtn">Instructions</button>
-    </li>
-    `;
+  recipesRender(recipes);
 
   // Réinitialiser les champs de saisie
   recipeName.value = "";
@@ -57,26 +44,24 @@ submitButton.addEventListener("click", () => {
   ingredients.forEach((ingredient) => {
     ingredient.value = "";
   });
-
-  // Mettre à jour l'affichage des recettes
-  recipesRender(recipes);
 });
 
+// Récupérer les recettes du localStorage au chargement de la page
 window.addEventListener("DOMContentLoaded", () => {
   getRecipesFromLocal();
 });
 
-//fonction pour récupérer les données
+// Fonction pour récupérer les données du localStorage
 const getRecipesFromLocal = () => {
   recipesArray = JSON.parse(localStorage.getItem("recipes")) || [];
   recipesRender(recipesArray);
 };
 
-//fonction d'affichage des recettes
+// Fonction pour afficher les recettes
 const recipesRender = (recipes) => {
   recipesContainer.innerHTML = ""; // Vider le conteneur avant d'ajouter de nouvelles recettes
   recipes.forEach((recipe, index) => {
-    recipesContainer.innerHTML += ` 
+    recipesContainer.innerHTML += `
       <li class="recipe" data-index="${index}">
         <h2>${recipe.name}</h2>
         <h3>${recipe.categorie}</h3>
@@ -92,14 +77,47 @@ recipesContainer.addEventListener("click", (event) => {
   if (event.target.classList.contains("ingredientsBtn")) {
     const index = event.target.closest(".recipe").getAttribute("data-index");
     const recipe = recipesArray[index];
-    alert(`Ingredients: ${recipe.ingredients}`);
-    // Afficher les ingrédients ici
+    showIngredients(recipe.ingredients);
   }
 
   if (event.target.classList.contains("instructionsBtn")) {
     const index = event.target.closest(".recipe").getAttribute("data-index");
     const recipe = recipesArray[index];
-    alert(`Instructions: ${recipe.instructions}`);
-    // Afficher les instructions ici
+    showInstructions(recipe.instructions);
+  }
+});
+
+const showIngredients = (ingredients) => {
+  const overlay = document.createElement("div");
+  overlay.classList.add("ingredients-container", "overlay");
+  overlay.innerHTML = `
+    <button class="close-btn">Close</button>
+    <h2>Ingredients</h2>
+    <ul>
+      ${ingredients.map((ing) => `<li>${ing}</li>`).join("")}
+    </ul>
+  `;
+  document.body.appendChild(overlay);
+};
+
+const showInstructions = (instructions) => {
+  const overlay = document.createElement("div");
+  overlay.classList.add("instructions-container", "overlay");
+  overlay.innerHTML = `
+    <button class="close-btn">Close</button>
+    <h2>Instructions</h2>
+    <ul>
+      <li>${instructions}</li>
+    </ul>
+  `;
+  document.body.appendChild(overlay);
+};
+
+// Écouter les clics sur le bouton de fermeture pour les conteneurs d'ingrédients et d'instructions
+document.body.addEventListener("click", (e) => {
+  if (e.target.classList.contains("close-btn")) {
+    e.target
+      .closest(".ingredients-container, .instructions-container")
+      .remove();
   }
 });
